@@ -1,4 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
@@ -16,6 +22,9 @@ android {
             }
         }
     }
+    dataBinding {
+        enabled true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -30,11 +39,44 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    def dependencies = rootProject.ext.dependencies
+    compile dependencies.supportDesign
+    compile dependencies.supportRecyclerview
+    compile dependencies.supportCardView
+    compile dependencies.supportMultidex
+    //
+    compile dependencies.rxJava
+    compile dependencies.rxAndroid
+    compile dependencies.gson
+    compile dependencies.retrofit
+    compile dependencies.retrofitRxjavaAdapter
+    compile dependencies.retrofitGsonConverter
+    compile dependencies.okhttp3
+    compile dependencies.okhttpLoggingInterceptor
+    compile dependencies.glide
+    compile dependencies.dagger
+    kapt dependencies.daggerCompiler
+    provided dependencies.javaxAnnotation
+    compile dependencies.kotlinStdlib
+    compile dependencies.kotlinReflect
+
+    compile 'jp.wasabeef:glide-transformations:2.0.0'
+
+    //deep link
+    compile 'com.airbnb:deeplinkdispatch:2.0.1'
+    kapt 'com.airbnb:deeplinkdispatch-processor:2.0.1'
+    compile 'com.github.githubwing:ByeBurger:1.2.2'
+    kapt 'com.android.databinding:compiler:2.3.2'
+    // Kotlin
+    //    compile dependencies.kotlinStdlib
     testCompile 'junit:junit:4.12'
+}
+kapt {
+    generateStubs = true
 }
