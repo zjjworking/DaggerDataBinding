@@ -7,14 +7,19 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.zjj.daggerdatabinding.App.getMainComponent
+import com.zjj.daggerdatabinding.R
 import com.zjj.daggerdatabinding.base.BaseBindingFragment
 import com.zjj.daggerdatabinding.bean.FuckGoods
 import com.zjj.daggerdatabinding.component.FuckGoodsModule
 import com.zjj.daggerdatabinding.contract.FuckGoodsContract
 import com.zjj.daggerdatabinding.databinding.ViewRecyclerBinding
 import com.zjj.daggerdatabinding.presenter.FuckGoodsPresenter
+import com.zjj.daggerdatabinding.router.ClientUri
+import com.zjj.daggerdatabinding.router.Router
 import com.zjj.daggerdatabinding.ui.adapter.FuckGoodsAdapter
 import com.zjj.daggerdatabinding.utils.EventUtil
+import kotlinx.android.synthetic.main.title_view.view.*
+import kotlinx.android.synthetic.main.view_recycler.*
 import java.net.URLEncoder
 import java.util.ArrayList
 import javax.inject.Inject
@@ -24,6 +29,7 @@ import javax.inject.Inject
  */
 
 class AndroidFragment : BaseBindingFragment<ViewRecyclerBinding>(), FuckGoodsContract.View {
+
 
 
     private var mList = ArrayList<FuckGoods>()
@@ -36,13 +42,15 @@ class AndroidFragment : BaseBindingFragment<ViewRecyclerBinding>(), FuckGoodsCon
     }
 
     override fun initView() {
-        mAdapter = FuckGoodsAdapter(mList)
+        mAdapter = FuckGoodsAdapter(mList,R.layout.item_fuckgoods)
         context.getMainComponent().plus(FuckGoodsModule(this)).inject(this)
-        with(mBinding) {
-            recyclerView.adapter = mAdapter
-            recyclerView.layoutManager = LinearLayoutManager(context)
 
-            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        with(mBinding) {
+            mBinding.tvTitle.text  = "android干货"
+            recyclerView.adapter = mAdapter
+            recyclerView.setLayoutManager(LinearLayoutManager(context))
+            recyclerView.setErrorView( R.layout.view_error)
+            recyclerView.setOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (!recyclerView?.canScrollVertically(1)!!) {
@@ -54,13 +62,20 @@ class AndroidFragment : BaseBindingFragment<ViewRecyclerBinding>(), FuckGoodsCon
                     super.onScrollStateChanged(recyclerView, newState)
                 }
             })
+            recyclerView.errorView.setOnClickListener { view ->
+                recyclerView.showProgress()
+                onRefresh()
+            }
+            recyclerView.setRefreshListener{
+                onRefresh()
+            }
         }
 
         mPresenter.getData(mPage, ANDROID)
 
         mAdapter.setOnItemClickListener { pos ->
             val url = URLEncoder.encode(mList[pos].url)
-//            GankRouter.router(context, GankClientUri.DETAIL + url)
+            Router.router(context, ClientUri.DETAIL + url)
         }
 
 
@@ -95,5 +110,7 @@ class AndroidFragment : BaseBindingFragment<ViewRecyclerBinding>(), FuckGoodsCon
     override fun showError(msg: String) {
         EventUtil.showToast(mBinding.recyclerView.context, msg);
     }
-
+    override fun onRefresh() {
+        mPresenter.getData(mPage, ANDROID)
+    }
 }

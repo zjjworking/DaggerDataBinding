@@ -17,10 +17,9 @@ import com.zjj.daggerdatabinding.component.RandomModule
 import com.zjj.daggerdatabinding.contract.RandomContract
 import com.zjj.daggerdatabinding.databinding.ActivityMainBinding
 import com.zjj.daggerdatabinding.presenter.RandomPresenter
-import com.zjj.daggerdatabinding.ui.fragment.AndroidFragment
-import com.zjj.daggerdatabinding.ui.fragment.FragmentHolder
-import com.zjj.daggerdatabinding.ui.fragment.GirlFragment
-import com.zjj.daggerdatabinding.ui.fragment.IOSFragment
+import com.zjj.daggerdatabinding.router.ClientUri
+import com.zjj.daggerdatabinding.router.Router
+import com.zjj.daggerdatabinding.ui.fragment.*
 import com.zjj.daggerdatabinding.utils.EventUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import java.net.URLEncoder
@@ -50,10 +49,11 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),RandomContract.V
         navigationView.setOnNavigationItemSelectedListener { item ->
             var tab = 0
             when (item.itemId) {
-                R.id.menu_android -> tab = 0
-                R.id.menu_ios -> tab = 1
-                R.id.menu_girl -> tab = 2
-                R.id.menu_about -> tab = 3
+                R.id.menu_about -> tab = 0
+                R.id.menu_android -> tab = 1
+                R.id.menu_ios -> tab = 2
+                R.id.menu_girl -> tab = 3
+
             }
             viewPager.currentItem = tab
             false
@@ -61,7 +61,12 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),RandomContract.V
 
 
         floatingButton.setOnClickListener {
-            mPresenter.getRandom("Android")
+           when(viewPager.currentItem){
+               1 -> mPresenter.getRandom("Android")
+               2 -> mPresenter.getRandom("iOS")
+               3 -> mPresenter.getRandom("福利")
+           }
+
         }
 
     }
@@ -81,16 +86,17 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(),RandomContract.V
     }
     private fun initFragments() {
         mFragments = ArrayList()
+        mFragments.add(RecommendFragment.newInstance())
         mFragments.add(AndroidFragment.newInstance())
         mFragments.add(IOSFragment.newInstance())
         mFragments.add(GirlFragment.newInstance())
-        mFragments.add(FragmentHolder())
+
     }
 
     override fun onRandom(goods: FuckGoods) {
         val url = URLEncoder.encode(goods.url)
         toast("手气不错～")
-       // GankRouter.router(this,GankClientUri.DETAIL + url)
+        Router.router(this, ClientUri.DETAIL + url)
     }
     companion object {
         init {

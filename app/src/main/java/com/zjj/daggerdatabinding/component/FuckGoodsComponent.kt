@@ -18,6 +18,7 @@ interface FuckGoodsComponent {
     fun inject(fragment: IOSFragment)
 
     fun inject(fragment: GirlFragment)
+
 }
 
 @Module

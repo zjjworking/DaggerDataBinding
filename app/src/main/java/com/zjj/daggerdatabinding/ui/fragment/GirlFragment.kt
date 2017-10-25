@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.jude.easyrecyclerview.EasyRecyclerView
 import com.zjj.daggerdatabinding.App.getMainComponent
 import com.zjj.daggerdatabinding.R
 import com.zjj.daggerdatabinding.base.BaseBindingFragment
@@ -17,15 +18,16 @@ import com.zjj.daggerdatabinding.databinding.ViewRecyclerBinding
 import com.zjj.daggerdatabinding.presenter.FuckGoodsPresenter
 import com.zjj.daggerdatabinding.ui.adapter.GirlAdapter
 import com.zjj.daggerdatabinding.utils.EventUtil
+import kotlinx.android.synthetic.main.title_view.view.*
 import kotlinx.android.synthetic.main.view_recycler.*
+import java.net.URLEncoder
 import java.util.ArrayList
 import javax.inject.Inject
 
 
 class GirlFragment : BaseBindingFragment<ViewRecyclerBinding>(), FuckGoodsContract.View {
 
-
-    private lateinit var mRecyclerView : RecyclerView
+    private lateinit var mRecyclerView : EasyRecyclerView
     private var mList = ArrayList<FuckGoods>()
     private lateinit var mAdapter: GirlAdapter
     private var mPage = 1
@@ -39,13 +41,16 @@ class GirlFragment : BaseBindingFragment<ViewRecyclerBinding>(), FuckGoodsContra
     }
 
     override fun initView() {
-        mAdapter = GirlAdapter(mList)
+        mAdapter = GirlAdapter(mList,R.layout.item_girl)
         context.getMainComponent().plus(FuckGoodsModule(this)).inject(this)
-        with(mBinding!!) {
+
+        with(mBinding) {
+            tvTitle.text  = "妹子"
             mRecyclerView = recyclerView
             recyclerView.adapter = mAdapter
-            recyclerView.layoutManager = GridLayoutManager(context,2)
-            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            recyclerView.setLayoutManager(GridLayoutManager(context,2))
+            recyclerView.setErrorView(R.layout.view_error)
+            recyclerView.setOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (!recyclerView?.canScrollVertically(1)!!) {
@@ -57,17 +62,24 @@ class GirlFragment : BaseBindingFragment<ViewRecyclerBinding>(), FuckGoodsContra
                     super.onScrollStateChanged(recyclerView, newState)
                 }
             })
-
+            recyclerView.errorView.setOnClickListener { view ->
+                recyclerView.showProgress()
+                onRefresh()
+            }
+            recyclerView.setRefreshListener {
+                onRefresh()
+            }
             mPresenter.getData(mPage, GIRL)
+
         }
 
-        mAdapter.setOnItemClickListener {
+//        mAdapter.setOnItemClickListener {
 //            pos->
-
+//
 //            val imageView = recyclerView.findViewHolderForAdapterPosition(pos)?.itemView?.findViewById(R.id.iv_girl) as ImageView
 //
-//            ImageActivity.startActivity(context,imageView,mList[pos].url)
-        }
+//            JumpUtil.startIMGActivity(context,imageView,mList[pos].url)
+//        }
 
     }
 
@@ -98,6 +110,12 @@ class GirlFragment : BaseBindingFragment<ViewRecyclerBinding>(), FuckGoodsContra
     override fun refreshFaild(msg: String) {
         if(!TextUtils.isEmpty(msg)){
             showError(msg)
-        }    }
+        }
+    }
+
+    override fun onRefresh() {
+        mPresenter.getData(mPage, GIRL)
+    }
+
 
 }

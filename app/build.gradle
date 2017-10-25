@@ -16,6 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
         externalNativeBuild {
             cmake {
                 cppFlags "-frtti -fexceptions"
@@ -68,11 +69,17 @@ dependencies {
 
     compile 'jp.wasabeef:glide-transformations:2.0.0'
 
+    compile 'com.jude:easyrecyclerview:4.0.6'
+    compile 'com.jude:rollviewpager:1.4.5'
+
     //deep link
     compile 'com.airbnb:deeplinkdispatch:2.0.1'
     kapt 'com.airbnb:deeplinkdispatch-processor:2.0.1'
     compile 'com.github.githubwing:ByeBurger:1.2.2'
     kapt 'com.android.databinding:compiler:2.3.2'
+
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+
     // Kotlin
     //    compile dependencies.kotlinStdlib
     testCompile 'junit:junit:4.12'

@@ -18,6 +18,10 @@ interface FuckGoodsContract {
          * 刷新失败
          */
         fun refreshFaild(msg: String)
+        /**
+         * 刷新
+         */
+        open fun onRefresh()
 
     }
 

@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder
 import com.zjj.daggerdatabinding.BuildConfig
 import com.zjj.daggerdatabinding.api.Api
 import com.zjj.daggerdatabinding.api.Constants
+import com.zjj.daggerdatabinding.api.SecondApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.*
@@ -87,6 +88,21 @@ class ApiModule {
     }
 
     @Provides fun provideGson() = GsonBuilder().create()
+    /**
+     * 第一套请求接口
+     */
+    @Singleton
+    @Provides fun provideApi(retrofit: Retrofit) = retrofit.create(Api::class.java)
 
-    @Provides fun provideApi(retrofit:Retrofit) = retrofit.create(Api::class.java)
+    /**
+     * 有第二套请求接口，所有需要重写
+     */
+    @Singleton
+    @Provides fun provideSecondApi(client: OkHttpClient) =  Retrofit.Builder()
+            .client(client)
+            .baseUrl(HttpUrl.parse(Constants.HOST))
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .build().create(SecondApi::class.java)
+
 }

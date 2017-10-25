@@ -4,13 +4,35 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@mipmap/bg"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <android.support.v7.widget.RecyclerView
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+        </android.support.v7.widget.Toolbar>
+
+        <com.jude.easyrecyclerview.EasyRecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_empty="@layout/view_empty"
+            app:layout_progress="@layout/view_progress"
+            android:scrollbars="none"
+            >
 
-        </android.support.v7.widget.RecyclerView>
+        </com.jude.easyrecyclerview.EasyRecyclerView>
     </LinearLayout>
 </layout>

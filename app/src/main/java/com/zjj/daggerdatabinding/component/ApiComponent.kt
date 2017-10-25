@@ -2,8 +2,10 @@ package com.zjj.daggerdatabinding.component
 
 import com.zjj.daggerdatabinding.App.App
 import com.zjj.daggerdatabinding.module.ApiModule
+
 import dagger.Component
 import javax.inject.Singleton
+
 
 /**
  * Created by zjj on 17/10/17.
@@ -18,4 +20,6 @@ interface ApiComponent{
 
     fun plus(module: FuckGoodsModule):FuckGoodsComponent
     fun plus(module: RandomModule):RandomComponent
+    fun plus(module: RecommendModule):RecommendComponent
 }
+

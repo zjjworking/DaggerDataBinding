@@ -1,6 +1,8 @@
 package com.zjj.daggerdatabinding.model
 
+import android.util.Log
 import com.zjj.daggerdatabinding.api.Api
+import com.zjj.daggerdatabinding.api.Constants
 import com.zjj.daggerdatabinding.bean.FuckGoods
 import com.zjj.daggerdatabinding.bean.JsonResult
 import com.zjj.daggerdatabinding.contract.FuckGoodsContract

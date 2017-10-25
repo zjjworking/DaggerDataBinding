@@ -1,9 +1,9 @@
 ext {
 
-    compileSdkVersion = 24
-    minSdkVersion = 15
-    targetSdkVersion = 22
-    buildToolsVersion = '24.1.0'
+    compileSdkVersion = 25
+    minSdkVersion = 21
+    targetSdkVersion = 25
+    buildToolsVersion = '25.0.0'
 
     supportLibVersion = "25.0.0"
     retrofitLibVersion = "2.1.0"

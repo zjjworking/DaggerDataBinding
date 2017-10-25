@@ -9,7 +9,6 @@ import javax.inject.Inject
 import android.app.Activity
 
 
-
 /**
  * Created by zjj on 17/10/17.
  */
@@ -30,6 +29,7 @@ class App : Application() {
 //        BlockCanary.install(this, new AppBlockCanaryContext()).start();
         //初始化realm
         DaggerApiComponent.builder().apiModule(ApiModule()).appModule(AppModule(this)).build().inject(this)
+
     }
 
 
