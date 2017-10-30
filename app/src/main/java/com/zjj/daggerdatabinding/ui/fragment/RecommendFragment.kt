@@ -1,6 +1,5 @@
 package com.zjj.daggerdatabinding.ui.fragment
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
@@ -9,28 +8,26 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
-import android.widget.TextView
 import com.jude.easyrecyclerview.decoration.SpaceDecoration
 import com.jude.rollviewpager.hintview.IconHintView
 import com.zjj.daggerdatabinding.App.getMainComponent
 import com.zjj.daggerdatabinding.R
 import com.zjj.daggerdatabinding.base.BaseBindingFragment
-import com.zjj.daggerdatabinding.base.BaseDataBindingAdapter
-import com.zjj.daggerdatabinding.base.BaseNewBindingAdapter
 import com.zjj.daggerdatabinding.bean.VideoInfo
 import com.zjj.daggerdatabinding.bean.VideoRes
 import com.zjj.daggerdatabinding.component.RecommendModule
-import com.zjj.daggerdatabinding.contract.RecommendContract
+import com.zjj.daggerdatabinding.mvp.contract.RecommendContract
 import com.zjj.daggerdatabinding.databinding.RecommendHeaderBinding
 import com.zjj.daggerdatabinding.databinding.ViewRecyclerBinding
-import com.zjj.daggerdatabinding.presenter.RecommendPresenter
+import com.zjj.daggerdatabinding.mvp.presenter.RecommendPresenter
+import com.zjj.daggerdatabinding.router.ClientUri
+import com.zjj.daggerdatabinding.router.Router
 import com.zjj.daggerdatabinding.ui.adapter.BannerAdapter
 import com.zjj.daggerdatabinding.ui.adapter.RecommendAdapter
 import com.zjj.daggerdatabinding.utils.EventUtil
 import javax.inject.Inject
 import com.zjj.daggerdatabinding.utils.ScreenUtil
-import com.zjj.daggerdatabinding.widget.RollPagerView
+import java.net.URLEncoder
 
 
 /**
@@ -113,7 +110,10 @@ class RecommendFragment : BaseBindingFragment<ViewRecyclerBinding>(),RecommendCo
                 recyclerView.showProgress()
                 onRefresh()
             }
-
+            mAdapter.setOnItemClickListener { pos ->
+                val dataId = URLEncoder.encode(mList[pos-1].dataId)
+                Router.router(context, ClientUri.VIDEO_INFO + dataId)
+            }
             mPresenter.getData()
         }
     }
@@ -157,7 +157,6 @@ class RecommendFragment : BaseBindingFragment<ViewRecyclerBinding>(),RecommendCo
 
 
     companion object {
-        val ANDROID = "RECOMMEND"
         fun newInstance(): RecommendFragment {
             val fragment = RecommendFragment()
             val bundle = Bundle()

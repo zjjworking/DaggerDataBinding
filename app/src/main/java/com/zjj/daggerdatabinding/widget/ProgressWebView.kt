@@ -11,6 +11,7 @@ import com.zjj.daggerdatabinding.R
 
 /**
  * Created by zjj on 17/10/18.
+ *
  */
 class ProgressWebView(context: Context, attrs: AttributeSet) : WebView(context, attrs) {
 

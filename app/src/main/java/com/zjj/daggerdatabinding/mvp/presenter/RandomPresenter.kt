@@ -1,8 +1,8 @@
-package com.zjj.daggerdatabinding.presenter
+package com.zjj.daggerdatabinding.mvp.presenter
 
 import android.util.Log
-import com.zjj.daggerdatabinding.contract.RandomContract
-import com.zjj.daggerdatabinding.model.RandomModel
+import com.zjj.daggerdatabinding.mvp.contract.RandomContract
+import com.zjj.daggerdatabinding.mvp.model.RandomModel
 import com.zjj.daggerdatabinding.utils.StringUtils
 import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject

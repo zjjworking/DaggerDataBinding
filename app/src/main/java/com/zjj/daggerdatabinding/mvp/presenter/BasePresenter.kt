@@ -1,4 +1,4 @@
-package com.zjj.daggerdatabinding.presenter
+package com.zjj.daggerdatabinding.mvp.presenter
 
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription

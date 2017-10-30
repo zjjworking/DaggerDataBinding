@@ -21,5 +21,7 @@ interface ApiComponent{
     fun plus(module: FuckGoodsModule):FuckGoodsComponent
     fun plus(module: RandomModule):RandomComponent
     fun plus(module: RecommendModule):RecommendComponent
+    fun plus(module: VideoInfoModule):VideoInfoComponent
+    fun plus(module: CommentModule):CommentComponent
 }
 

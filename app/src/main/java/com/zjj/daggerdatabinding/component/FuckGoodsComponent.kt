@@ -1,6 +1,6 @@
 package com.zjj.daggerdatabinding.component
 
-import com.zjj.daggerdatabinding.contract.FuckGoodsContract
+import com.zjj.daggerdatabinding.mvp.contract.FuckGoodsContract
 import com.zjj.daggerdatabinding.ui.fragment.AndroidFragment
 import com.zjj.daggerdatabinding.ui.fragment.GirlFragment
 import com.zjj.daggerdatabinding.ui.fragment.IOSFragment

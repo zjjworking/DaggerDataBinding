@@ -1,10 +1,10 @@
-package com.zjj.daggerdatabinding.model
+package com.zjj.daggerdatabinding.mvp.model
 
 
 import com.zjj.daggerdatabinding.api.SecondApi
 import com.zjj.daggerdatabinding.bean.VideoHttpResponse
 import com.zjj.daggerdatabinding.bean.VideoRes
-import com.zjj.daggerdatabinding.contract.RecommendContract
+import com.zjj.daggerdatabinding.mvp.contract.RecommendContract
 import rx.Observable
 import javax.inject.Inject
 

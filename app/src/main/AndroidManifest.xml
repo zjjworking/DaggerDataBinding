@@ -40,6 +40,7 @@
         <activity android:name=".ui.activity.DetailActivity"/>
         <activity android:name=".ui.activity.AboutActivity"/>
         <activity android:name=".ui.activity.ImageActivity"/>
+        <activity android:name=".ui.activity.VideoInfoActivity"/>
     </application>
 
 </manifest>

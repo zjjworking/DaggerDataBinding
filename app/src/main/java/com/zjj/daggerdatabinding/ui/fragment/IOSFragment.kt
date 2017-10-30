@@ -12,14 +12,13 @@ import com.zjj.daggerdatabinding.R
 import com.zjj.daggerdatabinding.base.BaseBindingFragment
 import com.zjj.daggerdatabinding.bean.FuckGoods
 import com.zjj.daggerdatabinding.component.FuckGoodsModule
-import com.zjj.daggerdatabinding.contract.FuckGoodsContract
+import com.zjj.daggerdatabinding.mvp.contract.FuckGoodsContract
 import com.zjj.daggerdatabinding.databinding.ViewRecyclerBinding
-import com.zjj.daggerdatabinding.presenter.FuckGoodsPresenter
+import com.zjj.daggerdatabinding.mvp.presenter.FuckGoodsPresenter
 import com.zjj.daggerdatabinding.router.ClientUri
 import com.zjj.daggerdatabinding.router.Router
 import com.zjj.daggerdatabinding.ui.adapter.FuckGoodsAdapter
 import com.zjj.daggerdatabinding.utils.EventUtil
-import kotlinx.android.synthetic.main.view_recycler.*
 import java.net.URLEncoder
 import java.util.ArrayList
 import javax.inject.Inject

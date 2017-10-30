@@ -1,6 +1,6 @@
 package com.zjj.daggerdatabinding.component
 
-import com.zjj.daggerdatabinding.contract.RecommendContract
+import com.zjj.daggerdatabinding.mvp.contract.RecommendContract
 import com.zjj.daggerdatabinding.ui.fragment.RecommendFragment
 import dagger.Module
 import dagger.Provides

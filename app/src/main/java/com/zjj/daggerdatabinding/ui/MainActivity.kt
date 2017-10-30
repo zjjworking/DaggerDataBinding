@@ -1,11 +1,9 @@
 package com.zjj.daggerdatabinding.ui
 
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
-import android.widget.TextView
 
 import com.zjj.daggerdatabinding.App.App
 import com.zjj.daggerdatabinding.App.getMainComponent
@@ -14,9 +12,9 @@ import com.zjj.daggerdatabinding.R
 import com.zjj.daggerdatabinding.base.BaseBindingActivity
 import com.zjj.daggerdatabinding.bean.FuckGoods
 import com.zjj.daggerdatabinding.component.RandomModule
-import com.zjj.daggerdatabinding.contract.RandomContract
+import com.zjj.daggerdatabinding.mvp.contract.RandomContract
 import com.zjj.daggerdatabinding.databinding.ActivityMainBinding
-import com.zjj.daggerdatabinding.presenter.RandomPresenter
+import com.zjj.daggerdatabinding.mvp.presenter.RandomPresenter
 import com.zjj.daggerdatabinding.router.ClientUri
 import com.zjj.daggerdatabinding.router.Router
 import com.zjj.daggerdatabinding.ui.fragment.*

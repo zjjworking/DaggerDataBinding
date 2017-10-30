@@ -1,4 +1,4 @@
-package com.zjj.daggerdatabinding.contract
+package com.zjj.daggerdatabinding.mvp.contract
 
 import com.zjj.daggerdatabinding.base.BaseView
 import com.zjj.daggerdatabinding.bean.FuckGoods

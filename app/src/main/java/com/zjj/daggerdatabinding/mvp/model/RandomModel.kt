@@ -1,11 +1,9 @@
-package com.zjj.daggerdatabinding.model
+package com.zjj.daggerdatabinding.mvp.model
 
-import android.util.Log
 import com.zjj.daggerdatabinding.api.Api
-import com.zjj.daggerdatabinding.api.Constants
 import com.zjj.daggerdatabinding.bean.FuckGoods
 import com.zjj.daggerdatabinding.bean.JsonResult
-import com.zjj.daggerdatabinding.contract.RandomContract
+import com.zjj.daggerdatabinding.mvp.contract.RandomContract
 import rx.Observable
 import javax.inject.Inject
 

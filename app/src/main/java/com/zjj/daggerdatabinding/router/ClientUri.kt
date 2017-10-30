@@ -14,4 +14,9 @@ object ClientUri{
     const val DETAIL = "zjj://com.zjj.daggerdatabinding/ui/activity/detail/"
     //图片
     const val IMG = "IMG"
+    //电影详情
+    const val VIDEO_INFO = "zjj://com.zjj.daggerdatabinding/ui/activity/videoInfo/"
+
+    const val DATAID = "dataId"
+
 }

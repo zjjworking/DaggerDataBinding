@@ -1,13 +1,9 @@
-package com.zjj.daggerdatabinding.presenter
+package com.zjj.daggerdatabinding.mvp.presenter
 
 import android.util.Log
-import com.zjj.daggerdatabinding.contract.RecommendContract
-import com.zjj.daggerdatabinding.model.RecommendModel
-import com.zjj.daggerdatabinding.utils.RxUtil
+import com.zjj.daggerdatabinding.mvp.contract.RecommendContract
+import com.zjj.daggerdatabinding.mvp.model.RecommendModel
 import javax.inject.Inject
-import com.zjj.daggerdatabinding.bean.JsonResult
-import com.zjj.daggerdatabinding.bean.VideoHttpResponse
-import com.zjj.daggerdatabinding.bean.VideoRes
 import com.zjj.daggerdatabinding.utils.StringUtils
 import rx.android.schedulers.AndroidSchedulers
 

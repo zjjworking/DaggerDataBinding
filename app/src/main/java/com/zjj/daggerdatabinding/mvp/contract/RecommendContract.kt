@@ -1,8 +1,6 @@
-package com.zjj.daggerdatabinding.contract
+package com.zjj.daggerdatabinding.mvp.contract
 
 import com.zjj.daggerdatabinding.base.BaseView
-import com.zjj.daggerdatabinding.bean.FuckGoods
-import com.zjj.daggerdatabinding.bean.JsonResult
 import com.zjj.daggerdatabinding.bean.VideoHttpResponse
 import com.zjj.daggerdatabinding.bean.VideoRes
 import rx.Observable

@@ -77,9 +77,15 @@ dependencies {
     kapt 'com.airbnb:deeplinkdispatch-processor:2.0.1'
     compile 'com.github.githubwing:ByeBurger:1.2.2'
     kapt 'com.android.databinding:compiler:2.3.2'
-
+    //功能强大的recyclerView封装库
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
-
+    //videoplayer播放器
+    compile 'cn.jzvd:jiaozivideoplayer:6.0.2'
+    //tablayout
+    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
+    //eventBus
+    compile 'org.simple:androideventbus:1.0.5.1'
     // Kotlin
     //    compile dependencies.kotlinStdlib
     testCompile 'junit:junit:4.12'

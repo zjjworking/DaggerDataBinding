@@ -1,6 +1,6 @@
 package com.zjj.daggerdatabinding.component
 
-import com.zjj.daggerdatabinding.contract.RandomContract
+import com.zjj.daggerdatabinding.mvp.contract.RandomContract
 import com.zjj.daggerdatabinding.ui.MainActivity
 import dagger.Module
 import dagger.Provides

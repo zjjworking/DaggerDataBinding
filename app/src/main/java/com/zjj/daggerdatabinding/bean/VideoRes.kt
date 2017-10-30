@@ -17,7 +17,7 @@ data class VideoRes(
     var airTime: String,
     var director: String,
     var actors: String,
-    var pic: String?,
+    var pic: String,
     var description: String,
     var smoothURL: String,
     var SDURL: String,

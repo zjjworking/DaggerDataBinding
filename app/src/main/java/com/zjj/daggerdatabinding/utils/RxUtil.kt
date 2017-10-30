@@ -2,7 +2,7 @@ package com.zjj.daggerdatabinding.utils
 
 import android.text.TextUtils
 import com.zjj.daggerdatabinding.bean.JsonResult
-import com.zjj.daggerdatabinding.model.exception.ApiException
+import com.zjj.daggerdatabinding.mvp.model.exception.ApiException
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
